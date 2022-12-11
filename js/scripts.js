@@ -37,8 +37,8 @@ for (i = 0; i < pokemonList.length; i++) {
     //This if statement checks whether the height of each iteration exceedes 1m
     //in height and displays a message if the height exceedes 1m
     if (pokemonList[i].height > 1) {
-        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG <br>`);
+        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
     } else {
-        document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height}) <br>`);
+        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
     }
 }
