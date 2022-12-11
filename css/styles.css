@@ -4,7 +4,7 @@
 
 body {
 color: rgb(166, 244, 242);
-font-family: Arial, Helvetica, sans-serif;
+font-family: 'Secular One', Arial, Helvetica, sans-serif;
 font-weight: 400;
 font-size: 20px;
 letter-spacing: .125rem;
@@ -23,4 +23,9 @@ padding: 0px 15px;
 .pika-image {
     display: flex;
     justify-content: center;
+}
+
+.header-title {
+    color:rgb(23, 115, 54);
+    text-align: center;
 }
