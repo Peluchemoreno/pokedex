@@ -32,13 +32,27 @@ let pokemonList = [
     }
 ];
 
-//This for loop iterates over each item in my pokemonList array
-for (i = 0; i < pokemonList.length; i++) {
-    //This if statement checks whether the height of each iteration exceedes 1m
-    //in height and displays a message if the height exceedes 1m
-    if (pokemonList[i].height > 1) {
-        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
+function printArrayDetails() {
+    //This for loop iterates over each item in my pokemonList array
+    for (i = 0; i < pokemonList.length; i++) {
+        //This if statement checks whether the height of each iteration exceedes 1m
+        //in height and displays a message if the height exceedes 1m
+        if (pokemonList[i].height > 1) {
+            document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
+        } else {
+            document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
+        }
+    }
+}
+
+printArrayDetails();
+
+//---------------------------------
+
+function div(dividend, divisor) {
+    if (divisor === 0) {
+        alert("you are trying to divide by 0")
     } else {
-        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
+        return dividend / divisor
     }
 }
