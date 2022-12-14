@@ -1,48 +1,63 @@
-let pokemonList = [
-    {
-        name: 'squirtle',
-        height: .5,
-        types: ['water']
-    },
+//----------creating an immediately invoked function expression(IIFE) to have control over what variables i want to be global vs local-----
+// creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
+let pokemonRepo = (function () {
+    let pokemonList = [
+        {
+            name: 'squirtle',
+            height: .5,
+            types: ['water']
+        },
 
-    {
-        name: 'poliwrath',
-        height: 1.3,
-        types: ['water', 'fighting']
-    },
-    {
-        name: 'charizard',
-        height: 1.7,
-        types: ['fire', 'flying']
-    },
-    {
-        name: 'pikachu',
-        height: .4,
-        types: ['electric']
-    },
-    {
-        name: 'umbreon',
-        height: 1,
-        types: ['dark']
-    },
-    {
-        name: 'espeon',
-        height: .9,
-        types: ['psychic']
+        {
+            name: 'poliwrath',
+            height: 1.3,
+            types: ['water', 'fighting']
+        },
+        {
+            name: 'charizard',
+            height: 1.7,
+            types: ['fire', 'flying']
+        },
+        {
+            name: 'pikachu',
+            height: .4,
+            types: ['electric']
+        },
+        {
+            name: 'umbreon',
+            height: 1,
+            types: ['dark']
+        },
+        {
+            name: 'espeon',
+            height: .9,
+            types: ['psychic']
+        }
+    ];
+
+    function add(newPokemon) {
+        if (typeof newPokemon === "object") {
+            //going to return to try and validate using Object.keys
+        } else {
+            alert('incorrect data type')
+        }
+    };
+
+    function getAll() {
+        return pokemonList
+    };
+
+    return {
+        add: add,
+        getAll: getAll,
     }
-];
 
-//This for loop iterates over each item in my pokemonList array
-// for (i = 0; i < pokemonList.length; i++) {
-//     //This if statement checks whether the height of each iteration exceedes 1m
-//     //in height and displays a message if the height exceedes 1m
-//     if (pokemonList[i].height > 1) {
-//         document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
-//     } else {
-//         document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
-//     }
-// }
+})();
 
-//rewriting my for loop with a forEach method
 
-pokemonList.forEach(pokemon => document.write(`<div class="new-item">${pokemon.name} |${pokemon.height}| ${pokemon.types}</div>`));
+//---------------------Rewriting my for loop as a forEach array method--------------------------------
+
+//also here i updated the function to work with my IIFE
+pokemonRepo.getAll().forEach(pokemon => document.write(`<div class="new-item">${pokemon.name} |${pokemon.height}| ${pokemon.types}</div>`));
+
+console.log(pokemonRepo.getAll());
