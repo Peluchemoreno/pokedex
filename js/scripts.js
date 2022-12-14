@@ -33,12 +33,16 @@ let pokemonList = [
 ];
 
 //This for loop iterates over each item in my pokemonList array
-for (i = 0; i < pokemonList.length; i++) {
-    //This if statement checks whether the height of each iteration exceedes 1m
-    //in height and displays a message if the height exceedes 1m
-    if (pokemonList[i].height > 1) {
-        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
-    } else {
-        document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
-    }
-}
+// for (i = 0; i < pokemonList.length; i++) {
+//     //This if statement checks whether the height of each iteration exceedes 1m
+//     //in height and displays a message if the height exceedes 1m
+//     if (pokemonList[i].height > 1) {
+//         document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height}) WOW THAT'S BIG </div>`);
+//     } else {
+//         document.write(`<div class="new-item">${pokemonList[i].name} (height: ${pokemonList[i].height})</div>`);
+//     }
+// }
+
+//rewriting my for loop with a forEach method
+
+pokemonList.forEach(pokemon => document.write(`<div class="new-item">${pokemon.name} |${pokemon.height}| ${pokemon.types}</div>`));
