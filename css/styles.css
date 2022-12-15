@@ -13,11 +13,29 @@ background: linear-gradient(to right, grey, lightgrey);
 padding: 0px 15px;
 }
 
+ul.pokemon-list{
+  list-style: none;
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 20px;
+}
+
 .new-item {
     background-color: rgb(23, 115, 54);
     padding: 1rem 2rem;
     margin: 15px auto;
     max-width: 700px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    transition: all 100ms ease-in-out;
+}
+.new-item:hover{
+  background-image: linear-gradient(to right, rgb(31, 115, 163), rgb(23, 115, 54));
+  transform: translateY(-5px);
+  padding: 2rem 4rem;
+  cursor: pointer;
+  scale: 1.1;
 }
 
 .pika-image {
