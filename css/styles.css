@@ -47,3 +47,9 @@ ul.pokemon-list{
     color:rgb(23, 115, 54);
     text-align: center;
 }
+
+.loading-message {
+  text-align: center;
+  font-size: 40px;
+  color:rgb(23, 115, 54);
+}
