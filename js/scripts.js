@@ -42,7 +42,7 @@ let pokemonRepo = (function () {
   function addListItem(pokemon) {
     let listItem = document.createElement('li');
     let button = document.createElement('button');
-    button.innerText = pokemon.name;
+    button.innerText = `${pokemon.name}`;
     button.classList.add('new-item');
     listItem.appendChild(button);
     pokemonListHtml.appendChild(listItem);
@@ -70,7 +70,8 @@ let pokemonRepo = (function () {
 
   function addEventList(element, pokemon) {
     element.addEventListener('click', function () {
-      loadDetails(pokemon).then(showDetails(pokemon))
+      loadDetails(pokemon).then(showDetails(pokemon));
+
     })
   };
 
