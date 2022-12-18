@@ -63,6 +63,7 @@ let pokemonRepo = (() => {
       item.height = details.height;
       item.types = details.types;
       item.abilities = details.abilities;
+      item.isDefault = details.is_default;
     }).catch(e => {
       alert('ERROR LOADING DETAILS');
     })
