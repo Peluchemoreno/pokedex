@@ -1,11 +1,14 @@
 //----------creating an immediately invoked function expression(IIFE) to have control over what variables i want to be global vs local-----
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
-let pokemonRepo = (function () {
+let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=500';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=300';
   //1. create a function for loading the list of pokemon
 
 
+  function getAll() {
+    return pokemonList
+  };
 
   function add(newPokemon) {
     if (Object.keys(newPokemon).includes('name') &&
@@ -16,28 +19,10 @@ let pokemonRepo = (function () {
     }
   };
 
-  function getAll() {
-    return pokemonList
-  };
-
-  function loadDetails(item) {
-    let url = item.detailsUrl;
-    return fetch(url).then(response => {
-      return response.json();
-    }).then(details => {
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-      item.abilities = details.abilities;
-    }).catch(e => {
-      alert('ERROR LOADING DETAILS');
+  function addEventList(element, pokemon) {
+    element.addEventListener('click', () => {
+      showDetails(pokemon);
     })
-  }
-
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then((pokemon) => {
-      console.log(pokemon);
-    });
   };
 
   function addListItem(pokemon) {
@@ -67,12 +52,27 @@ let pokemonRepo = (function () {
     }).catch(error => {
       console.log(error);
     });
-  }
+  };
 
-  function addEventList(element, pokemon) {
-    element.addEventListener('click', () => {
-      showDetails(pokemon);
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(response => {
+      return response.json();
+    }).then(details => {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+      item.abilities = details.abilities;
+    }).catch(e => {
+      alert('ERROR LOADING DETAILS');
     })
+  };
+
+
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(() => {
+      console.log(pokemon);
+    });
   };
 
 
