@@ -25,7 +25,7 @@ let pokemonRepo = (function () {
     return fetch(url).then(response => {
       return response.json();
     }).then(details => {
-      item.imageUrl = details.sprites.font_default;
+      item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
       item.abilities = details.abilities;
@@ -35,8 +35,9 @@ let pokemonRepo = (function () {
   }
 
   function showDetails(pokemon) {
-    loadDetails(pokemon);
-    console.log(pokemon);
+    loadDetails(pokemon).then((pokemon) => {
+      console.log(pokemon);
+    });
   };
 
   function addListItem(pokemon) {
@@ -50,7 +51,7 @@ let pokemonRepo = (function () {
   };
 
   function loadList() {
-    //2. return the results of the fetch call. ** the results will be a promise **
+    //2. return the results of the fetch call. ** the results will be a promise object**
     return fetch(apiUrl).then(response => {
       //2b. then return a jsonified response using .then method to handle the response from the api
       return response.json();
@@ -69,9 +70,8 @@ let pokemonRepo = (function () {
   }
 
   function addEventList(element, pokemon) {
-    element.addEventListener('click', function () {
-      loadDetails(pokemon).then(showDetails(pokemon));
-
+    element.addEventListener('click', () => {
+      showDetails(pokemon);
     })
   };
 
