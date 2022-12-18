@@ -80,7 +80,7 @@ ul.pokemon-list{
 }
 
 .modal{
-  margin: 0 auto;
+  margin: auto auto;
   background-color: rgb(134, 134, 134);
   color:rgb(31, 115, 163);
   font-size: 1.5rem;
@@ -118,6 +118,10 @@ ul.pokemon-list{
 }
 
 .more-details-container{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: block;
+  padding-bottom: 2rem;
+}
+
+.height-box{
+  margin-bottom: 1rem;
 }

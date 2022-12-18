@@ -101,7 +101,7 @@ let pokemonRepo = (() => {
       let typesBox = document.createElement('div');
       typesBox.classList.add('types-box');
 
-      typesBox.textContent = types;
+      typesBox.textContent = `Types: ${types}`;
       let heightBox = document.createElement('div');
       heightBox.classList.add('height-box');
       heightBox.textContent = `Height: ${pokemon.height}`;
