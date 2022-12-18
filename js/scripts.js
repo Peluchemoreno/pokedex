@@ -3,7 +3,7 @@
 let pokemonRepo = (() => {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=300';
-  //1. create a function for loading the list of pokemon
+  let modalContainer = document.querySelector('#modal-container');
 
 
   function getAll() {
@@ -69,10 +69,55 @@ let pokemonRepo = (() => {
     })
   };
 
+  function closeModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
-      console.log(pokemon);
+      modalContainer.innerHTML = '';
+      let types = [];
+      console.log(pokemon.types);
+      pokemon.types.forEach(type => {
+        types.push(type.type.name);
+      });
+      console.log(types);
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+      let modalHeader = document.createElement('div');
+      modalHeader.classList.add('modal-header');
+      let modalHeaderText = document.createElement('h2');
+      modalHeaderText.classList.add('modal-header-text');
+      modalHeaderText.textContent = pokemon.name;
+      let modalCloseButton = document.createElement('button');
+      modalCloseButton.classList.add('modal-close-btn');
+      modalCloseButton.innerText = 'Close';
+      let pokeImg = document.createElement('img');
+      pokeImg.src = `${pokemon.imageUrl}`;
+      pokeImg.classList.add('image');
+      let detailsContainer = document.createElement('div');
+      detailsContainer.classList.add('more-details-container');
+      let typesBox = document.createElement('div');
+      typesBox.classList.add('types-box');
+
+      typesBox.textContent = types;
+      let heightBox = document.createElement('div');
+      heightBox.classList.add('height-box');
+      heightBox.textContent = `Height: ${pokemon.height}`;
+
+      detailsContainer.appendChild(heightBox);
+      detailsContainer.appendChild(typesBox);
+      modalHeader.appendChild(modalHeaderText);
+      modalHeader.appendChild(modalCloseButton);
+      modal.appendChild(modalHeader);
+      modal.appendChild(pokeImg);
+      modal.appendChild(detailsContainer);
+      modalContainer.appendChild(modal);
+
+      modalCloseButton.addEventListener('click', closeModal);
+
+      modalContainer.classList.add('is-visible');
     });
   };
 
