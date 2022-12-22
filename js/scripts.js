@@ -2,7 +2,7 @@
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
 let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=500';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=700';
   let modalContainer = document.querySelector('#modal-container');
 
 
@@ -31,13 +31,21 @@ let pokemonRepo = (() => {
 
   //this function handles adding each pokemon to the display screen
   function addListItem(pokemon) {
-    let pokemonListHtml = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
+    let pokemonListHtml = document.querySelector('.list-group.row');
+    pokemonListHtml.style.flexDirection = 'row';
+
+
     let button = document.createElement('button');
-    button.innerText = `${pokemon.name}`;
-    button.classList.add('new-item');
-    listItem.appendChild(button);
-    pokemonListHtml.appendChild(listItem);
+    button.innerText = pokemon.name.toUpperCase();
+
+    //temporarily setting the background manually while i debug the color issue
+    button.style.backgroundColor = '#17a2b8';
+    button.classList.add(
+      'list-group-item',
+      'col-md-4',
+      'btn',
+      'btn-info');
+    pokemonListHtml.appendChild(button);
     addEventList(button, pokemon);
   };
 
