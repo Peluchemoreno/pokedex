@@ -30,12 +30,12 @@ let pokemonRepo = (() => {
   };
 
   //this function will just load the pokemon image next to its name in the list
-  function renderImage(pokemon, element) {
+  function renderImage(pokemon, btnEl) {
     let url = pokemon.detailsUrl;
     return fetch(url).then(response => {
       return response.json();
     }).then(response => {
-      element.innerHTML = `<p>${pokemon.name.toUpperCase()}</p><img src="${response.sprites.front_default}">`;
+      btnEl.innerHTML = `<p>${pokemon.name.toUpperCase()}</p><img src="${response.sprites.front_default}">`;
     })
   }
 
