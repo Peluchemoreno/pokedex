@@ -29,6 +29,17 @@ let pokemonRepo = (() => {
     })
   };
 
+  //this function will just load the pokemon image next to its name in the list
+  function renderImage(pokemon, element) {
+    let url = pokemon.detailsUrl;
+    return fetch(url).then(response => {
+      return response.json();
+    }).then(response => {
+      element.innerHTML = `<p>${pokemon.name.toUpperCase()}</p><img src="${response.sprites.front_default}">`;
+    })
+  }
+
+
   //this function handles adding each pokemon to the display screen
   function addListItem(pokemon) {
     let pokemonListHtml = document.querySelector('.list-group.row');
@@ -37,12 +48,14 @@ let pokemonRepo = (() => {
 
     let button = document.createElement('button');
     button.innerText = pokemon.name.toUpperCase();
+    renderImage(pokemon, button);
 
     //temporarily setting the background manually while i debug the color issue
-    button.style.backgroundColor = '#17a2b8';
+    // button.style.backgroundColor = '#17a2b8';
+    button.setAttribute('type', 'button');
     button.classList.add(
       'list-group-item',
-      'col-md-4',
+      'col-sm-4',
       'btn',
       'btn-info');
     pokemonListHtml.appendChild(button);
