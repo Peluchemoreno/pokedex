@@ -2,7 +2,7 @@
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
 let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=7';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=900';
 
 
 
@@ -108,6 +108,27 @@ let pokemonRepo = (() => {
     loadDetails(pokemon).then(() => {
       //Here IO start building necessary blocks-------------------------------------------------------------
 
+      let myTypes = [];
+      let typesColors = {
+        normal: "#a8a878",
+        fire: '#f08030',
+        water: '#6890f0',
+        grass: '#78c850',
+        electric: '#f8d030',
+        ice: '#98d8d8',
+        fighting: '#c03028',
+        poison: '#a040a0',
+        ground: '#e0c068',
+        flying: '#a890f0',
+        psychic: '#f25987',
+        bug: '#a8b820',
+        ghost: '#705898',
+        rock: '#b8a038',
+        dark: '#705848',
+        dragon: '#7038f8',
+        steel: '#b8b8d0',
+        fairy: '#f0b6bc',
+      }
       let modal = document.querySelector('#modal');
       modal.innerHTML = '';
 
@@ -176,19 +197,21 @@ let pokemonRepo = (() => {
 
       let modalColumn1 = document.createElement('div');
       modalColumn1.classList.add('col');
+      modalColumn1.style.backgroundColor = '';
       modalRow1.appendChild(modalColumn1);
 
       let modalColumn2 = document.createElement('div');
       modalColumn2.classList.add('col');
+      modalColumn2.style.alignSelf = 'center';
       modalRow1.appendChild(modalColumn2);
 
       let modalColumn3 = document.createElement('div');
       modalColumn3.classList.add('col');
+      modalColumn3.style.alignSelf = 'center';
       modalRow1.appendChild(modalColumn3);
 
       modalColumn1.innerHTML = `<img src="${pokeImg.src}"></img>`;
-      modalColumn2.innerText = 'bye';
-      modalColumn3.innerText = 'seeya';
+      modalColumn3.innerHTML = `Height: ${pokemon.height}`;
 
       let modalFooter = document.createElement('div');
       modalFooter.classList.add('modal-footer');
@@ -202,7 +225,11 @@ let pokemonRepo = (() => {
       modalContent.appendChild(modalFooter);
       modalFooter.appendChild(footerButton);
 
-      console.log(pokemon.sprites.front_default);
+      pokemon.types.forEach(type => {
+        myTypes.push(type.type.name);
+      });
+
+      modalColumn2.innerHTML = `Types: ${myTypes}`;
 
     });
   };
