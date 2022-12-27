@@ -9,3 +9,13 @@ background-color: #17a2b8;
 body{
   background-color: rgba(224, 192, 10, 0.808);
 }
+
+.modal-content{
+  background-color: rgb(87, 87, 87);
+  color: #ffffffe7;
+  letter-spacing: 3px;
+  font-size: 20px;
+}
+.modal-header span{
+  color: white;
+}

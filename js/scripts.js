@@ -2,7 +2,7 @@
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
 let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=900';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=1100';
 
 
 
@@ -52,14 +52,13 @@ let pokemonRepo = (() => {
     button.innerText = pokemon.name.toUpperCase();
     renderImage(pokemon, button);
 
-    //temporarily setting the background manually while i debug the color issue
-    // button.style.backgroundColor = '#17a2b8';
     button.setAttribute('type', 'button');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#modal');
     button.classList.add(
       'list-group-item',
-      'col-sm-4',
+      'col',
+      'col-sm-3',
       'btn.btn-info',
     );
     pokemonListHtml.appendChild(button);
@@ -106,29 +105,19 @@ let pokemonRepo = (() => {
   //elements and populating them with classes that correspond to the custom css classes
   function showDetails(pokemon) {
     loadDetails(pokemon).then(() => {
-      //Here IO start building necessary blocks-------------------------------------------------------------
 
       let myTypes = [];
-      let typesColors = {
-        normal: "#a8a878",
-        fire: '#f08030',
-        water: '#6890f0',
-        grass: '#78c850',
-        electric: '#f8d030',
-        ice: '#98d8d8',
-        fighting: '#c03028',
-        poison: '#a040a0',
-        ground: '#e0c068',
-        flying: '#a890f0',
-        psychic: '#f25987',
-        bug: '#a8b820',
-        ghost: '#705898',
-        rock: '#b8a038',
-        dark: '#705848',
-        dragon: '#7038f8',
-        steel: '#b8b8d0',
-        fairy: '#f0b6bc',
-      }
+      let abilities = [];
+
+      pokemon.types.forEach(type => {
+        myTypes.push(type.type.name);
+      });
+
+      pokemon.abilities.forEach(ability => {
+        abilities.push(ability.ability.name);
+      });
+
+
       let modal = document.querySelector('#modal');
       modal.innerHTML = '';
 
@@ -185,7 +174,7 @@ let pokemonRepo = (() => {
 
 
       let modalGrid = document.createElement('div');
-      modalGrid.classList.add('container-fluid');
+      modalGrid.classList.add('container');
 
       modalBody.appendChild(modalGrid);
 
@@ -193,25 +182,25 @@ let pokemonRepo = (() => {
       let modalRow1 = document.createElement('div');
       modalRow1.classList.add('row');
 
+      let modalRow2 = document.createElement('div');
+      modalRow2.classList.add('row');
+
       modalGrid.appendChild(modalRow1);
+      modalGrid.appendChild(modalRow2);
 
-      let modalColumn1 = document.createElement('div');
-      modalColumn1.classList.add('col');
-      modalColumn1.style.backgroundColor = '';
-      modalRow1.appendChild(modalColumn1);
 
-      let modalColumn2 = document.createElement('div');
-      modalColumn2.classList.add('col');
-      modalColumn2.style.alignSelf = 'center';
-      modalRow1.appendChild(modalColumn2);
+      let modalImgCol = document.createElement('div');
+      modalImgCol.classList.add('col');
+      modalImgCol.style.backgroundColor = '';
+      modalImgCol.style.textAlign = 'center';
+      modalRow1.appendChild(modalImgCol);
 
-      let modalColumn3 = document.createElement('div');
-      modalColumn3.classList.add('col');
-      modalColumn3.style.alignSelf = 'center';
-      modalRow1.appendChild(modalColumn3);
+      let modalDetailsCol = document.createElement('div');
+      modalDetailsCol.classList.add('col');
+      modalDetailsCol.style.alignSelf = 'center';
+      modalRow2.appendChild(modalDetailsCol);
 
-      modalColumn1.innerHTML = `<img src="${pokeImg.src}"></img>`;
-      modalColumn3.innerHTML = `Height: ${pokemon.height}`;
+      modalImgCol.innerHTML = `<img width='150px' src="${pokeImg.src}"></img>`;
 
       let modalFooter = document.createElement('div');
       modalFooter.classList.add('modal-footer');
@@ -225,23 +214,17 @@ let pokemonRepo = (() => {
       modalContent.appendChild(modalFooter);
       modalFooter.appendChild(footerButton);
 
-      pokemon.types.forEach(type => {
-        myTypes.push(type.type.name);
-      });
 
-      modalColumn2.innerHTML = `Types: ${myTypes}`;
+      modalDetailsCol.innerHTML = `Height: ${pokemon.height}<br><br>Types: ${myTypes.join(', ')}<br><br>Abilities: ${abilities.join(', ')}`;
 
     });
   };
 
 
   return {
-    add: add,
     getAll: getAll,
     addListItem: addListItem,
-    showDetails: showDetails,
     loadList: loadList,
-    loadDetails: loadDetails,
   }
 
 })();
