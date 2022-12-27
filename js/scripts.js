@@ -215,7 +215,7 @@ let pokemonRepo = (() => {
       modalFooter.appendChild(footerButton);
 
 
-      modalDetailsCol.innerHTML = `Height: ${pokemon.height}<br><br>Types: ${myTypes.join(', ')}<br><br>Abilities: ${abilities.join(', ')}`;
+      modalDetailsCol.innerHTML = `Height: ${pokemon.height}<br>Types: ${myTypes.join(', ')}<br>Abilities: ${abilities.join(', ')}`;
 
     });
   };
