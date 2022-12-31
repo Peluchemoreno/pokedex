@@ -5,23 +5,16 @@
   margin: 10px;
   background-color: #17a2b8;
 }
-
 body {
   background-color: rgba(224, 192, 10, 0.808);
 }
-
 .modal-content {
-  background: linear-gradient(
-    to top right,
-    rgb(116, 114, 32),
-    rgb(196, 194, 108),
-    rgb(116, 114, 32)
-  );
+  background: linear-gradient(to top right, #747220, #c4c26c, #747220);
   color: #ffffffe7;
   letter-spacing: 2px;
   font-size: 20px;
   line-height: 35px;
 }
 .modal-header span {
-  color: white;
+  color: #fff;
 }
