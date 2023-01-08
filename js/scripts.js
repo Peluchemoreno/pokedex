@@ -230,7 +230,7 @@ let pokemonRepo = (() => {
     let filteredList = [];
 
     pokemonList.forEach(i => {
-      if (i.name.includes(`${searchValue.value}`)){
+      if (i.name.includes(`${searchValue.value.toUpperCase()}`)){
         filteredList.push(i);
       }
     })
