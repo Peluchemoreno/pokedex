@@ -11,6 +11,7 @@ Interacting with this app is simple.
 - a list of pokemon, their names, and images will be automatically loaded onto your page.
 - then when you click on a specific pokemon, you will be shown a larger image of the pokemon,
   along with data containing their height in 10ths of a meter, their type(s), and their basic moves.
+- currently, to search, type in all lower case letters
 
 This app is using ESLint and Prettier with their recommended settings applied.
 
