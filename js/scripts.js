@@ -214,7 +214,7 @@ let pokemonRepo = (() => {
 
       modalDetailsCol.innerHTML = `Height: ${
         pokemon.height
-      }<br><br>Types: ${myTypes.join(", ")}<br><br>Abilities: ${abilities.join(
+      }<br>Types: ${myTypes.join(", ")}<br>Abilities: ${abilities.join(
         ", "
       )}`;
     });
