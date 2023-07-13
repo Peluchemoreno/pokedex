@@ -4,7 +4,7 @@ This is a simple pokedex clone using vanilla Javascript version ES6, HTML5, and 
 
 This app loads pokemon and their data from the pokemon api located here: https://pokeapi.co/api/v2/pokemon/
 
-Getting this app running is as simple as visiting https://peluchemoreno.github.io/simple-js-app-poke/
+Getting this app running is as simple as visiting https://peluchemoreno.github.io/pokedex/
 
 Interacting with this app is simple.
 
