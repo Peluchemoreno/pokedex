@@ -226,7 +226,6 @@ let pokemonRepo = (() => {
 
   function search(e){
     e.preventDefault();
-    console.log(searchValue.value);
     let filteredList = [];
 
     pokemonList.forEach(i => {
