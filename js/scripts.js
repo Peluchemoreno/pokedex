@@ -2,7 +2,7 @@
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
 let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=800";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=1000";
 
   //this will return an array of all pokemon in the pokemonList
   function getAll() {
