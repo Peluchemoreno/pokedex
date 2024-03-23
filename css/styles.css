@@ -4,24 +4,55 @@
   font-size: 1rem;
   margin: 10px;
   background-color: #17a2b8;
+  height: 150px;
+  width: 150px;
+  filter: grayscale(.8);
+  transition: filter .5s ease;
+  border-radius: 10px;
+}
+
+.list-group-item:hover {
+  filter: grayscale(0);
 }
 
 body {
   background-color: rgba(224, 192, 10, 0.808);
 }
 
+.list-group {
+  display: flex;
+  row-gap: 20px;
+  justify-content: space-evenly;
+}
+
+
+.image-pulsating {
+  animation: pulsate 1s ease-in-out alternate infinite;
+}
+
 .modal-content {
-  background: linear-gradient(
-    to top right,
-    rgb(116, 114, 32),
-    rgb(196, 194, 108),
-    rgb(116, 114, 32)
-  );
+  background: rgb(63, 62, 62);
   color: #ffffffe7;
   letter-spacing: 2px;
   font-size: 20px;
   line-height: 35px;
+  border-radius: 10px;
+  border: 3px solid black;
 }
 .modal-header span {
   color: white;
+}
+
+@keyframes pulsate {
+  0% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.2;
+  }
+
+  100% {
+    scale: 1;
+  }
 }

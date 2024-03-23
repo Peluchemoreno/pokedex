@@ -36,9 +36,22 @@ let pokemonRepo = (() => {
         return response.json();
       })
       .then((response) => {
-        btnEl.innerHTML = `<p>${pokemon.name.toUpperCase()}</p><img src="${
-          response.sprites.front_default
-        }">`;
+        btnEl.innerHTML = `<p class="name">${pokemon.name.toUpperCase()}</p>`;
+        const image = document.createElement('img');
+        image.src = response.sprites.front_default;
+        btnEl.append(image)
+
+        function handleMousein(){
+          image.classList.add('image-pulsating');
+        }
+
+        function handleMouseexit(){
+          image.classList.remove('image-pulsating')
+        }
+
+        btnEl.addEventListener('mouseenter', handleMousein);
+        btnEl.addEventListener('mouseleave', handleMouseexit);
+
       })
       .catch((error) => {
         console.log(error);
@@ -118,11 +131,17 @@ let pokemonRepo = (() => {
       let abilities = [];
 
       pokemon.types.forEach((type) => {
-        myTypes.push(type.type.name);
+        let formatType = Array.from(Array.from(type.type.name).splice(0, 1).toString().toUpperCase());
+        const completeType = Array.from(type.type.name).slice(1);
+        formatType = formatType.concat(completeType).join('')
+        myTypes.push(formatType);
       });
 
       pokemon.abilities.forEach((ability) => {
-        abilities.push(ability.ability.name);
+        let formatAbility = Array.from(Array.from(ability.ability.name).splice(0, 1).toString().toUpperCase());
+        const completeAbility = Array.from(ability.ability.name).slice(1);
+        formatAbility = formatAbility.concat(completeAbility).join('')
+        abilities.push(formatAbility);
       });
 
       let modal = document.querySelector("#modal");
@@ -212,13 +231,25 @@ let pokemonRepo = (() => {
       modalContent.appendChild(modalFooter);
       modalFooter.appendChild(footerButton);
 
-      modalDetailsCol.innerHTML = `Height: ${
-        pokemon.height
-      }<br>Types: ${myTypes.join(", ")}<br>Abilities: ${abilities.join(
-        ", "
-      )}`;
+      if (pokemon.height.toString().length === 1){
+        pokemon.height = `0.${pokemon.height}`
+      } else {
+        pokemon.height = `${Array.from(pokemon.height.toString()).join('.')}`
+      }
+
+      modalDetailsCol.innerHTML = `Height: 
+      ${
+        pokemon.height + 'm'
+      }
+      <br>
+      Types: 
+      ${myTypes.join(", ")}
+      <br>
+      Abilities: 
+      ${abilities.join(", ")}`;
     });
   }
+
 
   const searchButton = document.querySelector("#search");
   let searchValue = document.querySelector("#search-value");
