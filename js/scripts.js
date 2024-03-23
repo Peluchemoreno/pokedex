@@ -217,7 +217,7 @@ let pokemonRepo = (() => {
       modalDetailsCol.style.alignSelf = "center";
       modalRow2.appendChild(modalDetailsCol);
 
-      modalImgCol.innerHTML = `<img width='150px' src="${pokeImg.src}"></img>`;
+      modalImgCol.innerHTML = `<img width='150px' class="image-pulsating" src="${pokeImg.src}"></img>`;
 
       let modalFooter = document.createElement("div");
       modalFooter.classList.add("modal-footer");
