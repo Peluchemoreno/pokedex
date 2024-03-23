@@ -30,6 +30,10 @@ body {
   animation: pulsate 1s ease-in-out alternate infinite;
 }
 
+.form-inline {
+  position: relative;
+}
+
 .modal-content {
   background: rgb(63, 62, 62);
   color: #ffffffe7;

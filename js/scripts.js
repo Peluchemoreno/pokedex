@@ -2,7 +2,7 @@
 // creating a variable to hold what my iife returns. this obj that gets returned allows me to have control over what happpens to my pokemon list
 let pokemonRepo = (() => {
   let pokemonList = [];
-  let apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=1000";
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon?limit=10";
 
   //this will return an array of all pokemon in the pokemonList
   function getAll() {
@@ -255,18 +255,27 @@ let pokemonRepo = (() => {
   let searchValue = document.querySelector("#search-value");
   searchButton.addEventListener('click', search);
 
+
+
+
   function search(e){
     e.preventDefault();
     let filteredList = [];
-
-    pokemonList.forEach(i => {
-      if (i.name.includes(`${searchValue.value.toLowerCase()}`)){
-        filteredList.push(i);
-      }
-    })
-
     let pokemonListHtml = document.querySelector(".list-group.row");
+
+    if (!searchValue.value){
+      alert(searchValue.validationMessage)
+    }
+    
+    for (i=0; i<pokemonList.length; i++){
+      if (pokemonList[i].name.includes(searchValue.value.toLowerCase())){
+        filteredList.push(pokemonList[i]);
+      }
+    }
+    
+    
     pokemonListHtml.innerHTML = "";
+    
 
     filteredList.forEach(item=>{
       addListItem(item);
@@ -283,6 +292,14 @@ let pokemonRepo = (() => {
   };
 })();
 
+const home = document.querySelector('.home');
+home.addEventListener('click', ()=>{
+  pokemonRepo.loadList().then(() => {
+    pokemonRepo.getAll().forEach((pokemon) => {
+      pokemonRepo.addListItem(pokemon);
+    });
+  });
+})
 pokemonRepo.loadList().then(() => {
   pokemonRepo.getAll().forEach((pokemon) => {
     pokemonRepo.addListItem(pokemon);
